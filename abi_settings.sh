@@ -5,13 +5,16 @@
 BASEDIR=$2
 
 case $1 in
-  armeabi)
-    NDK_ABI='arm'
-    NDK_TOOLCHAIN_ABI='arm-linux-androideabi'
+  x86)
+    NDK_ABI='x86'
+    #NDK_TOOLCHAIN_ABI='i686-linux-android'
+    NDK_TOOLCHAIN_ABI='x86'
+    NDK_TOOLCHAIN_ABI_='i686-linux-android'
   ;;
   armeabi-v7a)
     NDK_ABI='arm'
     NDK_TOOLCHAIN_ABI='arm-linux-androideabi'
+    NDK_TOOLCHAIN_ABI_='arm-linux-androideabi'
     ARCH_CPU='armv7-a'
     CFLAGS="$CFLAGS -march=$ARCH_CPU"
   ;;
@@ -22,7 +25,7 @@ if [ ! -d "$TOOLCHAIN_PREFIX" ]; then
   ${ANDROID_NDK_ROOT_PATH}/build/tools/make-standalone-toolchain.sh --toolchain=${NDK_TOOLCHAIN_ABI}-${NDK_TOOLCHAIN_ABI_VERSION} --platform=android-${ANDROID_API_VERSION} --install-dir=${TOOLCHAIN_PREFIX}
 fi
 
-CROSS_PREFIX=${TOOLCHAIN_PREFIX}/bin/${NDK_TOOLCHAIN_ABI}-
+CROSS_PREFIX=${TOOLCHAIN_PREFIX}/bin/${NDK_TOOLCHAIN_ABI_}-
 NDK_SYSROOT=${TOOLCHAIN_PREFIX}/sysroot
 
 export CFLAGS="${CFLAGS} -Wformat -Wformat-security -Werror=format-security --param ssp-buffer-size=4  -fstack-protector -D_FORTIFY_SOURCE=2 -I${TOOLCHAIN_PREFIX}/include"
