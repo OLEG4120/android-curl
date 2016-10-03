@@ -6,6 +6,7 @@ Curl compiled with OpenSSL for Android (Supports Android L)
 Supported Architecture
 ----
 * arm
+* x86
 
 Instructions
 ----
