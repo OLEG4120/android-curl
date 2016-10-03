@@ -10,7 +10,7 @@ case $1 in
   armeabi-v7a)
     OPENSSL_TARGET="android-armv7"
     ;;
-  armeabi)
+  x86)
     OPENSSL_TARGET="android"
     ;;
 esac
